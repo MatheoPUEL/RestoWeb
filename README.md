@@ -1,26 +1,12 @@
 # **RestoWeb**  
 
 ## **Description du projet**  
-Restoweb est une application web destinée aux clients d’un restaurant. Elle leur permet de consulter le menu, passer des commandes en ligne, puis d’être notifiés lorsque leur commande est prête à être récupérée au comptoir.
+Restoweb est une application web destinée aux clients d’un restaurant. Elle leur permet de consulter le menu, passer des commandes en ligne, puis d’être notifiés lorsque leur commande est prête à être récupérée au comptoir ou manger sur place.
 
 ## **Fonctionnalités principales**  
-- **Gestion des utilisateurs**
-- Inscription
-- Connexion / Déconnexion
-
--  **Commande de produits**
-- Affichage de la liste des produits
-- Choix des quantités
-- Option de consommation : sur place ou à emporter
-- Calcul automatique du total TTC
-  
-- **Paiement (Fictif, aucun paiement est réelement effectué)**
-- Paiement par carte bancaire (numéro, CVC, date d'expiration)
-
-- **Gestion des commandes**
-- Acceptation ou refus d'une commande par l'établissement
-- Notification par mail au client lorsque la commande est prête
-- Indication que la commande a été retirée par le client
+- Les utilisateurs doivent obligatoirement s'inscrire pour pouvoir passer commande depuis l'interface.
+- Ils peuvent consulter l'état actuel de leurs commandes en temps réel.
+- Le restaurateur peut accepter ou refuser les commandes, et mettre à jour leur statut afin que le client soit informé de l'avancement de sa commande.
   
 Ce projet a été réalisé dans le cadre d'un **projet de classe de 2SIO en option SLAM** (Solutions Logicielles et Applications Métier).
 
