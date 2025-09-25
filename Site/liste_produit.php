@@ -10,10 +10,10 @@ $sql = "SELECT * FROM produit";
 
 try {
     $sth = $dbh->prepare($sql);
-    $sth->execute($params);
+    $sth->execute();
     $rows = $sth->fetchALL(PDO::FETCH_ASSOC);
 } catch (PDOException $ex) {
-    die ("ERREUR lors de la requête permettant d'afficher la liste des produits".$ex->getMesssage());
+    die ("ERREUR lors de la requête permettant d'afficher la liste des produits".$ex->getMessage());
 }
 
 echo "<ul>";
