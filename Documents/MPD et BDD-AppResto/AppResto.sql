@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- HÃ´te : 127.0.0.1
--- GÃ©nÃ©rÃ© le : jeu. 18 sep. 2025 Ã  09:28
+-- Hôte : 127.0.0.1
+-- Généré le : jeu. 25 sep. 2025 à 10:14
 -- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.2.12
+-- Version de PHP : 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de donnÃ©es : `restoapp`
+-- Base de données : `restoapp`
 --
 
 -- --------------------------------------------------------
@@ -34,7 +34,7 @@ CREATE TABLE `commande` (
   `typeCommande` varchar(50) NOT NULL,
   `idEtat` int(11) NOT NULL,
   `idUtilisateur` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -45,7 +45,7 @@ CREATE TABLE `commande` (
 CREATE TABLE `etat` (
   `idEtat` int(11) NOT NULL,
   `libEtat` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -55,10 +55,10 @@ CREATE TABLE `etat` (
 
 CREATE TABLE `ligne_commande` (
   `idCommande` int(11) NOT NULL,
-  `idProduit` varchar(50) NOT NULL,
+  `idProduit` int(11) NOT NULL,
   `qteCommandee` int(11) DEFAULT NULL,
   `prixHtLigneCommande` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -67,10 +67,17 @@ CREATE TABLE `ligne_commande` (
 --
 
 CREATE TABLE `produit` (
-  `idProduit` varchar(50) NOT NULL,
+  `idProduit` int(11) NOT NULL,
   `libProduit` varchar(50) NOT NULL,
   `prixHtProduit` decimal(15,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `produit`
+--
+
+INSERT INTO `produit` (`idProduit`, `libProduit`, `prixHtProduit`) VALUES
+(1, 'test', 30.00);
 
 -- --------------------------------------------------------
 
@@ -82,11 +89,13 @@ CREATE TABLE `utilisateur` (
   `idUtilisateur` int(11) NOT NULL,
   `loginUtilisateur` varchar(50) NOT NULL,
   `emailUtilisateur` varchar(50) NOT NULL,
-  `mdpUtilisateur` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `mdpUtilisateur` varchar(50) DEFAULT NULL,
+  `nomUtil` varchar(50) NOT NULL,
+  `prenomUtil` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Index pour les tables dÃ©chargÃ©es
+-- Index pour les tables déchargées
 --
 
 --
@@ -123,7 +132,35 @@ ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`idUtilisateur`);
 
 --
--- Contraintes pour les tables dÃ©chargÃ©es
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `commande`
+--
+ALTER TABLE `commande`
+  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `etat`
+--
+ALTER TABLE `etat`
+  MODIFY `idEtat` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `produit`
+--
+ALTER TABLE `produit`
+  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Contraintes pour les tables déchargées
 --
 
 --
