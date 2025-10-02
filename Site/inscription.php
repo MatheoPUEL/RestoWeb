@@ -1,4 +1,7 @@
 <?php 
+        $title = "Inscription";
+        require_once('./function/db_function.php');
+        $dbh = db_connect();
         
         $login = ""; 
         $prenom = "";

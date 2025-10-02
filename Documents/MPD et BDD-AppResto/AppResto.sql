@@ -86,14 +86,6 @@ CREATE TABLE `utilisateur` (
   `prenomUtil` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `utilisateur`
---
-
-INSERT INTO `utilisateur` (`idUtilisateur`, `loginUtilisateur`, `emailUtilisateur`, `mdpUtilisateur`, `prenomUtil`) VALUES
-(1, 'Gaetan', 'gaetan.appresto@gmail.com', '$2y$10$TCgQC/CAI.T0J8gzrIV1FOQc3PNlVV7Bm', 'Anonyme'),
-(2, 'noa', 'noa.restoapp@resto.fr', '$2y$10$bQ2F9EyV2jt4Fx091h8e6urVOurkTSzzz', 'Anonyme'),
-(3, 'Pue', 'mateho.pue@restoapp.fr', '$2y$10$JNZBFjItxUv7h5zXzyvf1.3SyRchRZjRF', 'Matheo');
 
 --
 -- Index pour les tables déchargées
