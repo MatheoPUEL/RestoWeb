@@ -8,7 +8,39 @@ body {
     background-color: #001528;
     color: #fefffe;
 }
-
+.alert-danger {
+    width: 95%;
+    padding: 15px;
+    background-color: #ff4757;
+    border-radius: 15px;
+}
+.auth {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 55px;
+}
+.auth input[type='email'], input[type='password'] {
+    width: 550px;
+    height: 50px;
+    font-size: 20px;
+    color: #fefffe;
+    background: none;
+    border: 1px solid #fefffe;
+    border-radius: 15px;
+    padding: 0px 25px;
+}
+.auth input[type='submit'] {
+    background-color: #ffcc8a;
+    color: #001528;
+    font-size: 20px;
+    height: 50px;
+    border-radius: 15px;
+    border: 1px solid ;
+}
 .hr {
     display: flex;
     justify-content: center;
@@ -31,15 +63,24 @@ nav  {
     align-items: center;
 }
 nav .user-section {
-    width: 25%;
+    width: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 50px;
+}
+.nav-name {
+    color: #fefffe;
+    text-decoration: none;
+    font-size: 18px;
 }
 nav .user-section a {
     color: #fefffe;
     text-decoration: none;
     font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 nav .user-section a:hover {
     color: #d2d2d2;
@@ -78,7 +119,7 @@ nav .user-section a:hover {
     text-decoration: none;
     color:#473815;
     font-weight: 900;
-    margin-right: 50px;
+    
     transition-duration: 0.5s;
 }
 .secondary-cta {
@@ -112,11 +153,19 @@ nav .user-section a:hover {
     transform: translateX(-50%);
     width: 70%;   
 }
-
+.content-2 {
+    margin-top: 150px;
+    position: absolute;
+    top: -15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+}
 .cards {
     display: flex;
     flex-direction: row;
     gap: 150px;
+    margin-bottom: 150px;
 }
 .card {
     display: flex;
@@ -127,4 +176,22 @@ nav .user-section a:hover {
 }
 .card h2 {
     color: #ffdcae;
+}
+
+.notre-carte {
+    margin-top: 150px;
+    text-align: center;
+}
+.notre-carte h1 {
+    color: #fefffe;
+    font-family: "Domine", serif;
+}
+.notre-carte h3 {
+    font-family: "Niconne", cursive;
+    font-size: 40px;
+    font-weight: 400;
+    color: #ffdcae;
+}
+.innershadow {
+    border-radius: 10px;
 }
