@@ -1,14 +1,14 @@
-<?php
-$title = "Inscription";
- require_once('./function/db_function.php');
- $dbh = db_connect();
-
-        $sql = ("INSERT INTO utilisateur(loginUtilisateur,prenomUtil,emailUtilisateur,mdpUtilisateur) VALUES (:login,:prenom,:email,:password)");
+<?php 
+        
         $login = ""; 
         $prenom = "";
         $email = "";
         $password = "";
         $repeatpassword = "";
+       
+        //commandes sql
+        $sqlinsert = ("INSERT INTO utilisateur(loginUtilisateur,prenomUtil,emailUtilisateur,mdpUtilisateur) VALUES (:login,:prenom,:email,:password)");
+        $sqlcheck = ("SELECT COUNT(*) FROM utilisateur WHERE emailUtilisateur = :email");
 
         //si toutes les variables sont remplies on continue
         if(isset($_POST["login"]) && isset($_POST["prenom"]) && isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["repeatpassword"])){
@@ -18,14 +18,22 @@ $title = "Inscription";
             $password = htmlspecialchars(trim($_POST["password"]));
             $repeatpassword = htmlspecialchars(trim($_POST["repeatpassword"]));
 
+            $sthcheck = $dbh->prepare($sqlcheck);
+            $sthcheck->execute([":email" => $email]);
+            $emailexists = $sthcheck->fetchColumn();
+
+        if($emailexists > 0){
+            $messager_email = "Cet email est déjà inscrit";
+            echo $messager_email;
+        } else {
             if(strlen($password)>=8){
                 if($password==$repeatpassword){
                     $password = password_hash($password, PASSWORD_DEFAULT);
                     $password = substr($password, 0, 40);
 
                     try{
-                        $sth = $dbh->prepare($sql);
-                        $sth->execute(array(":login" => $login ,":prenom" => $prenom, ":email" => $email, ":password" => $password,));
+                        $sthinsert = $dbh->prepare($sqlinsert);
+                        $sthinsert->execute(array(":login" => $login ,":prenom" => $prenom, ":email" => $email, ":password" => $password,));
                         $messagev = "Inscription prise en compte !";
                         echo $messagev;
                     } catch(PDOException){
@@ -40,6 +48,8 @@ $title = "Inscription";
                 $messager_str = "Le mot de passe doit être supérieur à 8 caractères";
                 echo $messager_str;
             }
+        }
+            
             
         }
     ?>
