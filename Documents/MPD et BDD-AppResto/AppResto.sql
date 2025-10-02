@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : jeu. 25 sep. 2025 à 10:14
--- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.1.25
+-- Hôte : localhost:8889
+-- Généré le : jeu. 02 oct. 2025 à 06:54
+-- Version du serveur : 8.0.40
+-- Version de PHP : 8.3.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,12 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `commande` (
-  `idCommande` int(11) NOT NULL,
+  `idCommande` int NOT NULL,
   `dateCommande` datetime NOT NULL,
   `totalCommande` decimal(15,2) NOT NULL,
-  `typeCommande` varchar(50) NOT NULL,
-  `idEtat` int(11) NOT NULL,
-  `idUtilisateur` int(11) NOT NULL
+  `typeCommande` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `idEtat` int NOT NULL,
+  `idUtilisateur` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -43,8 +43,8 @@ CREATE TABLE `commande` (
 --
 
 CREATE TABLE `etat` (
-  `idEtat` int(11) NOT NULL,
-  `libEtat` varchar(50) NOT NULL
+  `idEtat` int NOT NULL,
+  `libEtat` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -54,10 +54,10 @@ CREATE TABLE `etat` (
 --
 
 CREATE TABLE `ligne_commande` (
-  `idCommande` int(11) NOT NULL,
-  `idProduit` int(11) NOT NULL,
-  `qteCommandee` int(11) DEFAULT NULL,
-  `prixHtLigneCommande` varchar(50) DEFAULT NULL
+  `idCommande` int NOT NULL,
+  `idProduit` int NOT NULL,
+  `qteCommandee` int DEFAULT NULL,
+  `prixHtLigneCommande` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -67,17 +67,10 @@ CREATE TABLE `ligne_commande` (
 --
 
 CREATE TABLE `produit` (
-  `idProduit` int(11) NOT NULL,
-  `libProduit` varchar(50) NOT NULL,
+  `idProduit` int NOT NULL,
+  `libProduit` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `prixHtProduit` decimal(15,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `produit`
---
-
-INSERT INTO `produit` (`idProduit`, `libProduit`, `prixHtProduit`) VALUES
-(1, 'test', 30.00);
 
 -- --------------------------------------------------------
 
@@ -86,12 +79,12 @@ INSERT INTO `produit` (`idProduit`, `libProduit`, `prixHtProduit`) VALUES
 --
 
 CREATE TABLE `utilisateur` (
-  `idUtilisateur` int(11) NOT NULL,
-  `loginUtilisateur` varchar(50) NOT NULL,
-  `emailUtilisateur` varchar(50) NOT NULL,
-  `mdpUtilisateur` varchar(50) DEFAULT NULL,
-  `nomUtil` varchar(50) NOT NULL,
-  `prenomUtil` varchar(50) NOT NULL
+  `idUtilisateur` int NOT NULL,
+  `loginUtilisateur` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `emailUtilisateur` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `mdpUtilisateur` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nomUtil` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `prenomUtil` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -139,25 +132,25 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCommande` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `etat`
 --
 ALTER TABLE `etat`
-  MODIFY `idEtat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idEtat` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idProduit` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUtilisateur` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées
