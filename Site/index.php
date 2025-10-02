@@ -22,7 +22,7 @@ session_start();
                 <a class="secondary-cta" href="./carte.php" data-aos="fade-up" data-aos-delay="750" data-aos-once="true">Passer commande &nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
-        <img style="position: absolute;" draggable="none" class="image-header" src="./image/homepage.webp" alt="Restoweb">
+        <img style="position: absolute;" draggable="false" class="image-header" src="./image/homepage.webp" alt="Restoweb">
 
     </div>
 
@@ -30,17 +30,17 @@ session_start();
     <section class="content">
         <div class="cards">
             <div class="card" data-aos="fade-up" data-aos-delay="600">
-                <img width="150px" src="./image/vegetables.png" alt="">
+                <img width="150px" draggable="false" src="./image/vegetables.png" alt="">
                 <h2>PRODUITS FRAIS</h2>
                 <p>Nous sélectionnons chaque jour des fruits et légumes de saison, cultivés localement pour garantir une fraîcheur incomparable.</p>
             </div>
             <div class="card" data-aos="fade-up" data-aos-delay="750">
-                <img width="150px" draggable="none" src="./image/restaurant.png" alt="">
+                <img width="150px" draggable="false" src="./image/restaurant.png" alt="">
                 <h2>UN CHEF D'EXECELLENCE</h2>
                 <p>Notre chef passionné élabore des plats savoureux en mêlant tradition et créativité pour ravir tous les palais.</p>
             </div>
             <div class="card" data-aos="fade-up" data-aos-delay="900">
-                <img width="150px" draggable="none" src="./image/value-proposition.png" alt="">
+                <img width="150px" draggable="false" src="./image/value-proposition.png" alt="">
                 <h2>RECETTES UNIQUES</h2>
                 <p>Découvrez des recettes originales et exclusives, conçues pour surprendre vos papilles à chaque bouchée.</p>
             </div>
@@ -53,17 +53,17 @@ session_start();
             <h3 style="margin-bottom: 100px;">Découvrez nos produits phares.</h3>
             <div class="cards">
                 <div class="card" data-aos="fade-up" data-aos-delay="900">
-                    <img class="innershadow" draggable="none" width="300px" src="./image/entrecote.jpg" alt="">
+                    <img class="innershadow" draggable="false" width="300px" src="./image/entrecote.jpg" alt="">
                     <h2>ENTRECÔTE</h2>
                     <p>Une pièce de bœuf tendre et juteuse, grillée à la perfection, servie avec une sauce maison et accompagnée de frites croustillantes ou de légumes de saison.</p>
                 </div>
                 <div class="card" data-aos="fade-up" data-aos-delay="750">
-                    <img class="innershadow" draggable="none" width="300px" src="./image/cotedeboeuf.jpg" alt="">
+                    <img class="innershadow" draggable="false" width="300px" src="./image/cotedeboeuf.jpg" alt="">
                     <h2>CÔTE DE BŒUF</h2>
                     <p>Côte de bœuf maturée et cuite au feu de bois, relevée d’herbes aromatiques, idéale à partager pour un moment convivial et gourmand.</p>
                 </div>
                 <div class="card" data-aos="fade-up" data-aos-delay="600">
-                    <img class="innershadow" draggable="none" width="300px" src="./image/vivelaviande.jpg" alt="">
+                    <img class="innershadow" draggable="false" width="300px" src="./image/vivelaviande.jpg" alt="">
                     <h2>RECETTES VÉGÉTARIENNES</h2>
                     <p>Une sélection colorée et équilibrée de plats végétariens : curry de légumes, lasagnes aux épinards ou encore salade de quinoa aux légumes grillés.</p>
                 </div>
