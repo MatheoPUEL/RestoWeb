@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : jeu. 02 oct. 2025 à 06:54
+-- Généré le : jeu. 02 oct. 2025 à 07:52
 -- Version du serveur : 8.0.40
 -- Version de PHP : 8.3.14
 
@@ -82,10 +82,18 @@ CREATE TABLE `utilisateur` (
   `idUtilisateur` int NOT NULL,
   `loginUtilisateur` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `emailUtilisateur` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `mdpUtilisateur` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `nomUtil` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `mdpUtilisateur` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `prenomUtil` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`idUtilisateur`, `loginUtilisateur`, `emailUtilisateur`, `mdpUtilisateur`, `prenomUtil`) VALUES
+(1, 'Gaetan', 'gaetan.appresto@gmail.com', '$2y$10$TCgQC/CAI.T0J8gzrIV1FOQc3PNlVV7Bm', 'Anonyme'),
+(2, 'noa', 'noa.restoapp@resto.fr', '$2y$10$bQ2F9EyV2jt4Fx091h8e6urVOurkTSzzz', 'Anonyme'),
+(3, 'Pue', 'mateho.pue@restoapp.fr', '$2y$10$JNZBFjItxUv7h5zXzyvf1.3SyRchRZjRF', 'Matheo');
 
 --
 -- Index pour les tables déchargées
@@ -150,7 +158,7 @@ ALTER TABLE `produit`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `idUtilisateur` int NOT NULL AUTO_INCREMENT;
+  MODIFY `idUtilisateur` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées
