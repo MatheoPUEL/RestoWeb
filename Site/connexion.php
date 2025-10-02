@@ -1,5 +1,5 @@
 <?php 
-include("Bdd/bdd_co.php");   
+include("bdd/bdd_co.php");   
 session_start();  
 $pdo = db_connect();   
 $message = ""; 
