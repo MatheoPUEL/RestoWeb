@@ -8,7 +8,7 @@
 <div class="paiement-container">
   <h1>Paiement</h1>
 
-  <form action="#" method="post">
+  <form action="#" method="post" >
     <section>
       <label for="cc-number">Numéro de carte</label>
       <input id="cc-number" name="cc-number" autocomplete="cc-number" pattern="[\d ]{10,30}" required>
@@ -30,6 +30,6 @@
       </div>
     </section>
 
-    <button id="complete-payment">Payer ma commande</button>
+    <a id="complete-payment" href="">Payer ma commande</a>
   </form>
 </div>

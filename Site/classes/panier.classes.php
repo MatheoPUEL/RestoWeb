@@ -14,4 +14,6 @@ class Panier
         $this->description = $description;
         $this->prix = $prix;
     }
+
+
 }

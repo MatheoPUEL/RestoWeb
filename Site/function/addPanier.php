@@ -4,7 +4,7 @@ require_once('../classes/panier.classes.php');
 $pdo = db_connect();
 session_start();
 
-if (isset($_GET['idpro'])) {
+if (isset($_GET['idpro']) && isset($_SESSION['emailUtilisateur'])) {
     $produit = $pdo->prepare("SELECT * FROM produit WHERE idProduit = :idProduit");
     $produit->bindParam(":idProduit", $_GET["idpro"]);
     $produit->execute();
@@ -18,5 +18,5 @@ if (isset($_GET['idpro'])) {
     $_SESSION['panier'][] = $produit;
     header('Location: ../carte.php');
 } else {
-    echo "no id";
+    header('Location: ../connexion.php');
 }

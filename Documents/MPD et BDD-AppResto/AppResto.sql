@@ -96,7 +96,6 @@ CREATE TABLE `utilisateur` (
   `loginUtilisateur` varchar(50) NOT NULL,
   `emailUtilisateur` varchar(50) NOT NULL,
   `mdpUtilisateur` text DEFAULT NULL,
-  `nomUtil` varchar(50) NOT NULL,
   `prenomUtil` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
