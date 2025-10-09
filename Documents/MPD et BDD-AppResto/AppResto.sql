@@ -82,7 +82,7 @@ CREATE TABLE `utilisateur` (
   `idUtilisateur` int NOT NULL,
   `loginUtilisateur` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `emailUtilisateur` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `mdpUtilisateur` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `mdpUtilisateur` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `prenomUtil` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

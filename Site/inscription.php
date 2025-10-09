@@ -18,7 +18,7 @@
             $login = htmlspecialchars(trim($_POST["login"]));
             $prenom = htmlspecialchars(trim($_POST["prenom"]));
             $email = htmlspecialchars(trim($_POST["email"]));
-            $password = htmlspecialchars(trim($_POST["password"]));
+            $password = htmlspecialchars($_POST["password"]);
             $repeatpassword = htmlspecialchars(trim($_POST["repeatpassword"]));
 
             $sthcheck = $dbh->prepare($sqlcheck);
@@ -32,8 +32,6 @@
             if(strlen($password)>=8){
                 if($password==$repeatpassword){
                     $password = password_hash($password, PASSWORD_DEFAULT);
-                    $password = substr($password, 0, 40);
-
                     try{
                         $sthinsert = $dbh->prepare($sqlinsert);
                         $sthinsert->execute(array(":login" => $login ,":prenom" => $prenom, ":email" => $email, ":password" => $password,));
