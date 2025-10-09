@@ -10,7 +10,7 @@
 function db_connect() {
   $dsn = 'mysql:host=localhost;dbname=appresto';  // contient le nom du serveur et de la base
   $user = 'root';
-  $password = '';
+  $password = 'root';
   try {
     $dbh = new PDO($dsn, $user, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
