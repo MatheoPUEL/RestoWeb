@@ -20,7 +20,7 @@ if (isset($_POST["login"]) && isset($_POST["password"])){
     
 
     // Vérifier si l'utilisateur existe et vérifier le mot de passe
-    if($userData && $login == $userData["emailUtilisateur"] && password_verify($password , $userData['mdpUtilisateur'])){         
+    if($userData && password_verify($password, $userData['mdpUtilisateur'])){       
         $_SESSION['emailUtilisateur'] = $userData['emailUtilisateur'];
         $_SESSION['loginUtilisateur'] = $userData['loginUtilisateur'];
         $_SESSION['idUtilisateur'] = $userData['idUtilisateur'];
