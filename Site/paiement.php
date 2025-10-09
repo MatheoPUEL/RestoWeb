@@ -30,6 +30,6 @@
       </div>
     </section>
 
-    <button id="complete-payment">Payer ma commande</button>
+    <button id="complete-payment">Payer ma commande </button>
   </form>
 </div>
