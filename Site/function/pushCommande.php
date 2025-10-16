@@ -12,7 +12,7 @@ if ( isset($_SESSION['panier']) && isset($_SESSION['emailUtilisateur']) && isset
 
     $total = 0;
     foreach ($_SESSION['panier'] as $produit) {
-        $total += $produit->prix;
+        $total += $produit->prix * $produit->quantite; 
     }
 
     $stmt->execute([
@@ -32,7 +32,7 @@ if ( isset($_SESSION['panier']) && isset($_SESSION['emailUtilisateur']) && isset
         $stmtLigne->execute([
             ':idCommande' => $idCommande,
             ':idProduit' => $produit->id,
-            ':quantite' => 1,
+            ':quantite' => $produit->quantite,
             ':prix' => $produit->prix
         ]);
     }

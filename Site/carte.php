@@ -227,15 +227,14 @@ try {
                     if (isset($_SESSION['panier'])) {
                         $items = (array) $_SESSION['panier'];
                         ?>
-                        <ul>
+                        <ul style="text-align: left;">
                             <?php
                             for ($i = 0; $i < count($items); $i++) {
                                 ?>
-                                <li><?= $items[$i]->lib ?> - <a
+                                <li>x<?= $items[$i]->quantite ?> - <?= $items[$i]->lib ?> - <a
                                         href="./function/removeItemPanier.php?idpro=<?= $items[$i]->id ?>"><i
                                             style="color: white;" class="fa-solid fa-trash"></i></a></li>
                                 <?php
-
                             }
                             ?>
                         </ul>
