@@ -14,12 +14,13 @@ if (isset($_GET['idpro']) && isset($_SESSION['emailUtilisateur'])) {
     if (!isset($_SESSION['panier'])) {
         $_SESSION['panier'] = [];
     }
-    
+
     $quantite = 1;
     $found= false;
     foreach ($_SESSION['panier'] as $item) {
         if ($item->id == $produit_data['idProduit']) {
             $item->quantite += 1;
+            $item->prix += $produit_data['prixHtProduit'];
             $found = true;
             header('Location: ../carte.php');
         }

@@ -12,7 +12,7 @@ if ( isset($_SESSION['panier']) && isset($_SESSION['emailUtilisateur']) && isset
 
     $total = 0;
     foreach ($_SESSION['panier'] as $produit) {
-        $total += $produit->prix * $produit->quantite; 
+        $total += $produit->prix; 
     }
 
     $stmt->execute([
@@ -37,10 +37,9 @@ if ( isset($_SESSION['panier']) && isset($_SESSION['emailUtilisateur']) && isset
         ]);
     }
     $_SESSION['panier'] = null;
-    echo $_SESSION['panier'];
-    echo "Commande et lignes enregistrées avec succès.";
+    header('Location: ../validation.php');
 
 } else {
-    echo "Veuillez vous connecter.";
+    header('Location: ../index.php');
 }
 ?>
