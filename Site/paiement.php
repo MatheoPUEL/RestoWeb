@@ -30,7 +30,7 @@ require_once('./inc/nav.inc.php');
     <section id="cc-exp-csc">
       <div>
         <label for="cc-exp">Date d'expiration</label>
-        <input id="cc-exp" name="cc-exp" autocomplete="cc-exp" placeholder="MM/YY" maxlength="5" required>
+        <input id="cc-exp" name="cc-exp" autocomplete="cc-exp" placeholder="MM/YY" pattern="^(0[1-9]|1[0-2])\/\d{2}$" maxlength="5" required>
       </div>
       <div>
         <label for="cc-csc">CVV</label>
