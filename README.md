@@ -31,66 +31,55 @@ Si toutes les étapes sont correctement réalisées, vous aurez accès au site *
 
 ## **Structure du projet**
 
-README.md
-│
-├───Documents
-│ ├───DCU et DPC
-│ │ Diagramme d'activité du processus de commande.drawio.png
-│ │ Diagramme des Cas d'Utilisations AppResto.drawio.png
-│ │
-│ ├───IHM
-│ │
-│ ├───MCD et MLD
-│ │ AppResto.loo
-│ │
-│ ├───MPD et BDD-AppResto
-│ │ AppResto.sql
-│ │
-│ └───SiteMap
-│ SiteMapRestoApp.drawio
-│ SiteMapRestoApp.png
-│
-└───Site
-│ index.php
-│ deconnexion.php
-│ inscription.php
-│ commande.php
-│ connexion.php
-│ carte.php
-│ validation.php
-│ sectionUtil.php
-│ paiement.php
-│
-├───css
-│ main.css
-│ panier.css
-│ collapse.css
-│ paiement.css
-│
-├───image
-│ homepage.webp
-│ shopping-cart.png
-│ logo.png
-│ value-proposition.png
-│ vegetables.png
-│ restaurant.png
-│ entrecote.jpg
-│ cotedeboeuf.jpg
-│ vivelaviande.jpg
-│
-├───inc
-│ nav.inc.php
-│ head.inc.php
-│
-├───function
-│ removeItemPanier.php
-│ addPanier.php
-│ db_function.php
-│ pushCommande.php
-│
-└───classes
-  panier.classes.php
-
+```plaintext
+Site
+├── index.php
+├── deconnexion.php
+├── inscription.php
+├── commande.php
+├── connexion.php
+├── carte.php
+├── validation.php
+├── sectionUtil.php
+├── paiement.php
+├── css
+│   ├── main.css
+│   ├── panier.css
+│   ├── collapse.css
+│   ├── paiement.css
+├── image
+│   ├── homepage.webp
+│   ├── shopping-cart.png
+│   ├── logo.png
+│   ├── value-proposition.png
+│   ├── vegetables.png
+│   ├── restaurant.png
+│   ├── entrecote.jpg
+│   ├── cotedeboeuf.jpg
+│   ├── vivelaviande.jpg
+├── inc
+│   ├── nav.inc.php
+│   ├── head.inc.php
+├── function
+│   ├── removeItemPanier.php
+│   ├── addPanier.php
+│   ├── db_function.php
+│   ├── pushCommande.php
+└── classes
+    └── panier.classes.php
+Documents
+├── DCU et DPC
+│   ├── Diagramme d'activité du processus de commande.drawio.png
+│   ├── Diagramme des Cas d'Utilisations AppResto.drawio.png
+├── IHM
+├── MCD et MLD
+│   └── AppResto.loo
+├── MPD et BDD-AppResto
+│   └── AppResto.sql
+└── SiteMap
+    ├── SiteMapRestoApp.drawio
+    └── SiteMapRestoApp.png
+```
 ---
 
 ## **Comptes de connexion par défaut**  
