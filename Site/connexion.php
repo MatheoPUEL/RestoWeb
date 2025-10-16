@@ -23,6 +23,7 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
     if ($userData && password_verify($password, $userData['mdpUtilisateur'])) {
         $_SESSION['emailUtilisateur'] = $userData['emailUtilisateur'];
         $_SESSION['loginUtilisateur'] = $userData['loginUtilisateur'];
+        $_SESSION['prenomUtilisateur'] = $userData['prenomUtil'];
         $_SESSION['idUtilisateur'] = $userData['idUtilisateur'];
         header('Location: index.php');
         exit();

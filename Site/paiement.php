@@ -41,7 +41,7 @@ require_once('./inc/nav.inc.php');
     <a id="complete-payment" href="./function/pushCommande.php">Payer ma commande</a>
   </form>
 
-<div class="panier-container" style="">
+<div class="panier-container">
     <h3>Récapitulatif de votre panier:</h3>
 
     <?php

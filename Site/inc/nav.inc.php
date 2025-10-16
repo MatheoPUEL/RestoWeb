@@ -13,8 +13,8 @@
             <?php
             if(isset($_SESSION['loginUtilisateur'])) {
                 ?>
-                <p class="nav-name" data-aos="fade-left" data-aos-delay="600">Bonjour <?= $_SESSION['loginUtilisateur'] ?></p>
-                <a href="" data-aos="fade-left" data-aos-delay="750">Voir mon panier &nbsp;&nbsp;<img height="20px" src="./image/shopping-cart.png" alt=""></a>
+                <a href="./sectionUtil.php" class="nav-name" data-aos="fade-left" data-aos-delay="600">Historique</a>
+                <a href="./carte.php" data-aos="fade-left" data-aos-delay="750">Voir mon panier &nbsp;&nbsp;<img height="20px" src="./image/shopping-cart.png" alt=""></a>
                 <a href="./deconnexion.php" data-aos="fade-left" data-aos-delay="750">Se deconnecter &nbsp;&nbsp;<i class="fa-solid fa-right-from-bracket"></i></a>
 
                 <?php
