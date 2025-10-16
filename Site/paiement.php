@@ -1,14 +1,22 @@
+<?php
+require_once('./function/db_function.php');
+require_once('./classes/panier.classes.php');
+session_start();
+?>
+
 <link rel="stylesheet" href="./css/main.css">
 <link rel="stylesheet" href="./css/paiement.css">
 
 <?php
-    require_once('./inc/nav.inc.php')
-?>
+require_once('./inc/nav.inc.php');
+
+
+  ?>
 
 <div class="paiement-container">
   <h1>Paiement</h1>
 
-  <form action="#" method="post" >
+  <form action="#" method="post">
     <section>
       <label for="cc-number">Numéro de carte</label>
       <input id="cc-number" name="cc-number" autocomplete="cc-number" pattern="[\d ]{10,30}" required>
@@ -30,6 +38,32 @@
       </div>
     </section>
 
-    <a id="complete-payment" href="">Payer ma commande</a>
+    <a id="complete-payment" href="./function/pushCommande.php">Payer ma commande</a>
   </form>
+
+<div class="panier-container" style="">
+    <h3>Récapitulatif de votre panier:</h3>
+
+    <?php
+    if (isset($_SESSION['panier'])) {
+      $items = (array) $_SESSION['panier'];
+      ?>
+      <ul>
+        <?php
+        for ($i = 0; $i < count($items); $i++) {
+          ?>
+          <li><?= $items[$i]->lib ?></li>
+          <?php
+
+        }
+        ?>
+      </ul>
+      <?php
+
+    } else {
+      echo '<p>Votre panier est vide</p>';
+    }
+    ?>
+  </div>
 </div>
+  

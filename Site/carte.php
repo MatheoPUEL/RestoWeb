@@ -66,6 +66,16 @@ try {
 } catch (PDOException $ex) {
     die("Erreur lors de la requête sql de récuération des bières" . $ex->getMessage());
 }
+
+$sql = "SELECT * FROM produit WHERE idType = 6";
+
+try {
+    $sth = $dbh->prepare($sql);
+    $sth->execute();
+    $dessert = $sth->fetchALL(PDO::FETCH_ASSOC);
+} catch (PDOException $ex) {
+    die("Erreur lors de la requête sql de récuération des bières" . $ex->getMessage());
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -86,7 +96,7 @@ try {
 
                     <!-- Viande -->
                     <?php if (count($viande) > 0): ?>
-                        <button type="button" class="collapsible">Viande</button>
+                        <button type="button" class="collapsible">Entrée</button>
                         <div class="collapse-content">
                             <?php foreach ($viandes as $viande): ?>
                                 <div class="card-product">
@@ -107,7 +117,7 @@ try {
 
                     <!-- Accompagnements -->
                     <?php if (count($accompagnements) > 0): ?>
-                        <button type="button" class="collapsible">Accompagnements</button>
+                        <button type="button" class="collapsible">Plat principal</button>
                         <div class="collapse-content">
                             <?php foreach ($accompagnements as $accompagnement): ?>
                                 <div class="card-product">
@@ -128,7 +138,7 @@ try {
 
                     <!-- Wagyu -->
                     <?php if (count($wagyus) > 0): ?>
-                        <button type="button" class="collapsible">Wagyu</button>
+                        <button type="button" class="collapsible">Dessert</button>
                         <div class="collapse-content">
                             <?php foreach ($wagyus as $wagyu): ?>
                                 <div class="card-product">
@@ -149,7 +159,7 @@ try {
 
                     <!-- Pinar -->
                     <?php if (count($pinars) > 0): ?>
-                        <button type="button" class="collapsible">Pinar</button>
+                        <button type="button" class="collapsible">Boisson</button>
                         <div class="collapse-content">
                             <?php foreach ($pinars as $pinar): ?>
                                 <div class="card-product">
@@ -170,7 +180,7 @@ try {
 
                     <!-- Bières -->
                     <?php if (count($bieres) > 0): ?>
-                        <button type="button" class="collapsible">Bières</button>
+                        <button type="button" class="collapsible">Dessert</button>
                         <div class="collapse-content">
                             <?php foreach ($bieres as $biere): ?>
                                 <div class="card-product">
@@ -189,6 +199,25 @@ try {
                         </div>
                     <?php endif; ?>
 
+                    <?php if (count($dessert) > 0): ?>
+                        <button type="button" class="collapsible">Dessert</button>
+                        <div class="collapse-content">
+                            <?php foreach ($dessert as $dessert): ?>
+                                <div class="card-product">
+                                    <div class="card-product-text">
+                                        <p style="font-size: 25px;"><?= $dessert["libProduit"] ?></p>
+                                        <p><?= $dessert["descriptionProduit"] ?></p>
+                                        <p><?= $dessert["prixHtProduit"] ?> €</p>
+                                    </div>
+                                    <div class="card-product-cta">
+                                        <a href="./function/addPanier.php?idpro=<?= urlencode($dessert["idProduit"]) ?>">
+                                            Ajouter au panier &nbsp;&nbsp;<i class="fa-solid fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
 
                 <div class="panier-container" style="position: relative; width: 25%; ">
@@ -197,25 +226,27 @@ try {
                     <?php
                     if (isset($_SESSION['panier'])) {
                         $items = (array) $_SESSION['panier'];
-                    ?>
+                        ?>
                         <ul>
                             <?php
                             for ($i = 0; $i < count($items); $i++) {
-                            ?>
-                                <li><?= $items[$i]->lib ?> - <a href="./function/removeItemPanier.php?idpro=<?=$items[$i]->id?>"><i class="fa-solid fa-trash"></i></a></li>
-                            <?php
-                        
+                                ?>
+                                <li><?= $items[$i]->lib ?> - <a
+                                        href="./function/removeItemPanier.php?idpro=<?= $items[$i]->id ?>"><i
+                                            style="color: white;" class="fa-solid fa-trash"></i></a></li>
+                                <?php
+
                             }
                             ?>
                         </ul>
-                    <?php
+                        <?php
 
                     } else {
                         echo '<p>Votre panier est vide</p>';
                     }
                     ?>
 
-                    <a href="" id="complete-payment">Passer au paiement</a>
+                    <a class="btn-paiment" href="./paiement.php" id="complete-payment">Passer au paiement</a>
                 </div>
             </div>
         </div>
@@ -227,7 +258,7 @@ try {
         var i;
 
         for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function() {
+            coll[i].addEventListener("click", function () {
                 this.classList.toggle("active");
                 var content = this.nextElementSibling;
                 if (content.style.display === "block") {
