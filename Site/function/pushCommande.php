@@ -17,7 +17,7 @@ if ( isset($_SESSION['panier']) && isset($_SESSION['emailUtilisateur']) && isset
 
     $stmt->execute([
         ':totalCommande' => $total,
-        ':typeCommande' => 0,
+        ':typeCommande' => $_GET['choix'],
         ':idEtat' => 1,
         ':idUtilisateur' => $_SESSION['idUtilisateur']
     ]);

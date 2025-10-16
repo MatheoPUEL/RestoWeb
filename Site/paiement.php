@@ -38,7 +38,7 @@ require_once('./inc/nav.inc.php');
       </div>
     </section>
 
-    <a id="complete-payment" href="./function/pushCommande.php">Payer ma commande</a>
+    <a id="complete-payment" href="./function/pushCommande.php?choix=<?=$_POST['choix']?>">Payer ma commande</a>
   </form>
 
 <div class="panier-container">

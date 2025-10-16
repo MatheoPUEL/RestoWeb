@@ -220,34 +220,41 @@ try {
                     <?php endif; ?>
                 </div>
 
-                <div class="panier-container" style="position: relative; width: 25%; ">
-                    <h3>Votre panier:</h3>
 
+                <form action="paiement.php" method="POST" style="width: 25%; padding: 15px;">
+                    <h3>Votre panier:</h3>
                     <?php
                     if (isset($_SESSION['panier'])) {
                         $items = (array) $_SESSION['panier'];
-                        ?>
+                    ?>
                         <ul style="text-align: left;">
                             <?php
                             for ($i = 0; $i < count($items); $i++) {
-                                ?>
+                            ?>
                                 <li>x<?= $items[$i]->quantite ?> - <?= $items[$i]->lib ?> - <a
                                         href="./function/removeItemPanier.php?idpro=<?= $items[$i]->id ?>"><i
                                             style="color: white;" class="fa-solid fa-trash"></i></a></li>
-                                <?php
+                            <?php
                             }
                             ?>
                         </ul>
-                        <?php
+                    <?php
 
                     } else {
                         echo '<p>Votre panier est vide</p>';
                     }
                     ?>
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                        <input type="radio" id="contactChoice1" name="choix" value="0" checked />
+                        <label for="contactChoice1">Sur place</label>
 
-                    <a class="btn-paiment" href="./paiement.php" id="complete-payment">Passer au paiement</a>
-                </div>
+                        <input type="radio" id="contactChoice2" name="choix" value="1" />
+                        <label for="contactChoice2">Emporter</label>
+                    </div>
+                    <button type="submit" class="btn-paiment" id="complete-payment">Passer au paiement</button>
+                </form>
             </div>
+
         </div>
     </section>
 
@@ -257,7 +264,7 @@ try {
         var i;
 
         for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function () {
+            coll[i].addEventListener("click", function() {
                 this.classList.toggle("active");
                 var content = this.nextElementSibling;
                 if (content.style.display === "block") {
