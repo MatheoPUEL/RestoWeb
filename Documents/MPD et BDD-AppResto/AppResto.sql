@@ -258,11 +258,56 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
-
+/** Trigger de la 3.1 **/
 DELIMITER |
-CREATE OR REPLACE TRIGGER calc_prix_ttc_on_insert_here BEFORE INSERT 
-ON commande FOR EACH ROW
+CREATE TRIGGER before_update_ligne_commande BEFORE UPDATE ON ligne_commande
+ FOR EACH ROW BEGIN
+ DECLARE v_prixHt DECIMAL(5,2) ;
+
+ SELECT prixHtProduit into v_prixHt from produit
+ WHERE idProduit = new.idProduit ;
+ set new.prixHtLigneCommande = v_prixHt * new.qteCommandee ;
+
+END |
+DELIMITER ;
+
+/** Trigger de la 3.2 **/
+DELIMITER |
+CREATE TRIGGER BEFORE_insert_ligne_commande BEFORE INSERT ON ligne_commande
+ FOR EACH ROW BEGIN
+
+DECLARE v_prixHt DECIMAL(5,2) ;
+
+SELECT prixHtProduit into v_prixHt from produit
+WHERE idProduit = new.idProduit;
+
+set new.prixHtLigneCommande = v_prixHt * new.qteCommandee ;
+
+END |
+DELIMITER ;
+
+
+/** Trigger de la 3.4 **/
+DELIMITER |
+CREATE OR REPLACE TRIGGER after_ligne_update AFTER UPDATE
+ON ligne_commande
+FOR EACH ROW
 BEGIN
-	SET NEW.totalCommande = NEW.totalCommande + (NEW.totalCommande * 0.20);
+	DECLARE v_prixTotal DECIMAL(16,2);
+    SELECT totalCommande INTO v_prixTotal FROM commande WHERE idCommande = NEW.idCommande;
+   	SET v_prixTotal = (v_prixTotal - OLD.prixHtLigneCommande) + (NEW.prixHtLigneCommande * 1.20);
+	UPDATE commande SET totalCommande = v_prixTotal WHERE idCommande = NEW.idCommande;
+END |
+DELIMITER ;
+/** Trigger de la 3.3 **/
+DELIMITER |
+CREATE OR REPLACE TRIGGER after_ligne_insert BEFORE INSERT
+ON ligne_commande
+FOR EACH ROW
+BEGIN
+    DECLARE v_prixTTC DECIMAL(16,2);
+    SELECT SUM(prixHtLigneCommande) INTO v_prixTTC FROM `ligne_commande` WHERE idCommande = NEW.idCommande;
+    SET v_prixTTC = v_prixTTC * 1.20;
+    UPDATE commande SET totalCommande = v_prixTTC WHERE idCommande = NEW.idCommande;
 END |
 DELIMITER ;
