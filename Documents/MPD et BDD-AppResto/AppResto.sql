@@ -47,6 +47,10 @@ CREATE TABLE `etat` (
   `libEtat` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+INSERT INTO `etat` (`idEtat`, `libEtat`) VALUES
+(1, 'Commandé '),
+(2, 'Commencé');
+
 -- --------------------------------------------------------
 
 --
