@@ -62,6 +62,7 @@ CREATE TABLE `ligne_commande` (
   `idProduit` int(11) NOT NULL,
   `qteCommandee` int(11) DEFAULT NULL,
   `prixHtLigneCommande` varchar(50) DEFAULT NULL
+  `prixHTCLigneCommande` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
