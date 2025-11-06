@@ -311,3 +311,24 @@ BEGIN
     UPDATE commande SET totalCommande = v_prixTTC WHERE idCommande = NEW.idCommande;
 END |
 DELIMITER ;
+
+
+DELIMITER |
+CREATE OR REPLACE TRIGGER after_insert_commande AFTER INSERT
+ON ligne_commande FOR EACH ROW
+BEGIN
+    DECLARE v_prixCommande DECIMAL (5,2);
+    DECLARE v_typeCommande VARCHAR(3);
+
+    SELECT typeCommande INTO v_typeCommande FROM commande WHERE idCommande = NEW.idCommande;
+
+    SELECT SUM(prixHtLigneCommande) into v_prixCommande FROM ligne_commande
+    WHERE idCommande = NEW.idCommande;
+
+IF v_typeCommande = "SP" THEN
+    UPDATE commande SET totalCommande = v_prixCommande * 1.055 WHERE idCommande = NEW.idCommande;
+ELSE
+    UPDATE commande SET totalCommande = v_prixCommande * 1.10 WHERE idCommande = NEW.idCommande;
+END IF;
+END |
+DELIMITER ;
