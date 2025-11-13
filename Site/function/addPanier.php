@@ -4,6 +4,8 @@ require_once('../classes/panier.classes.php');
 $pdo = db_connect();
 session_start();
 
+
+
 if (isset($_GET['idpro']) && isset($_SESSION['emailUtilisateur'])) {
     $produit = $pdo->prepare("SELECT * FROM produit WHERE idProduit = :idProduit");
     $produit->bindParam(":idProduit", $_GET["idpro"]);
@@ -31,5 +33,5 @@ if (isset($_GET['idpro']) && isset($_SESSION['emailUtilisateur'])) {
         header('Location: ../carte.php');
     }
 } else {
-    header('Localtion: ../index.php');
+    header('Location: ../index.php');
 }
