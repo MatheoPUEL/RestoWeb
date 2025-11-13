@@ -8,7 +8,6 @@ class Panier
     public $prix;
     public $quantite;
     public static $prixTotal;
-    public static $prixTotal;
 
     function __construct($id, $lib, $description, $prix, $quantite)
     {

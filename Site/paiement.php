@@ -40,17 +40,14 @@ require_once('./inc/nav.inc.php');
     </section>
 
     <a id="complete-payment" href="./function/pushCommande.php?choix=<?= $_POST['choix'] ?>">Payer ma commande</a>
-    <a id="complete-payment" href="./function/pushCommande.php?choix=<?= $_POST['choix'] ?>">Payer ma commande</a>
   </form>
 
-  <div class="panier-container">
   <div class="panier-container">
     <h3>Récapitulatif de votre panier:</h3>
 
     <?php
     if (isset($_SESSION['panier'])) {
       $items = (array) $_SESSION['panier'];
-    ?>
     ?>
       <ul>
         <?php
@@ -60,31 +57,9 @@ require_once('./inc/nav.inc.php');
                                         href="./function/removeItemPanier.php?idpro=<?= $items[$i]->id ?>"><i
                                             style="color: white;" class="fa-solid fa-trash"></i></a></li>
         <?php
-        ?>
-          <li>x<?= $items[$i]->quantite ?> - <?= $items[$i]->lib ?><a
-                                        href="./function/removeItemPanier.php?idpro=<?= $items[$i]->id ?>"><i
-                                            style="color: white;" class="fa-solid fa-trash"></i></a></li>
-        <?php
-
         }
         ?>
       </ul>
-
-
-    <?php
-      if (!empty($_SESSION['panier'])) {
-        $total = Panier::calculerPrixTotal($_SESSION['panier']);
-        if($_POST['choix'] == 0) {
-          $total = $total * 1.055;
-        } else {
-          $total = $total * 1.10;
-        }
-        echo "<p>Prix à payer : " . number_format($total, 2, ',', ' ') . " € </p>";
-      } else {
-        echo "Votre panier est vide.";
-      }
-
-
     <?php
       if (!empty($_SESSION['panier'])) {
         $total = Panier::calculerPrixTotal($_SESSION['panier']);
@@ -101,5 +76,5 @@ require_once('./inc/nav.inc.php');
       echo '<p>Votre panier est vide</p>';
     }
     ?>
-  </div>
+
 </div>
