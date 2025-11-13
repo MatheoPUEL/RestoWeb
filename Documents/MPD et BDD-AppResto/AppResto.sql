@@ -3,8 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 06 nov. 2025 à 11:55
--- Généré le : jeu. 06 nov. 2025 à 11:55
+-- Généré le : jeu. 13 nov. 2025 à 09:07
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -54,13 +53,7 @@ CREATE TABLE `etat` (
 
 INSERT INTO `etat` (`idEtat`, `libEtat`) VALUES
 (1, 'Commandé '),
-(2, 'Commencé');
-
---
--- Déchargement des données de la table `etat`
---
-
-INSERT INTO `etat` (`idEtat`, `libEtat`) VALUES
+(2, 'Commencé'),
 (1, 'Commandé '),
 (2, 'Commencé');
 
@@ -221,9 +214,8 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`idUtilisateur`, `loginUtilisateur`, `emailUtilisateur`, `mdpUtilisateur`, `nomUtil`, `prenomUtil`) VALUES
-(1, 'Matheo', 'test@gmail.com', '$2y$10$IkTVzJoAVJz.jE1QfySGEe6uqmPELs/vkYeEeGxPTecVboSYUk64m', '', 'test'),
-(1, 'Matheo', 'test@gmail.com', '$2y$10$IkTVzJoAVJz.jE1QfySGEe6uqmPELs/vkYeEeGxPTecVboSYUk64m', '', 'test'),
-(2, 'test1@gmail.com', 'test1@gmail.com', '$2y$10$sHdFkjSlWhQhkTDTAAOkPOE7E/rP9iiJgIhT9nklXZjXLJVx5x.Im', '', 'test1');
+(1, 'user1', 'user1@restoweb.com', '$2y$10$/8yOWwxl6kQA7gThcDMf.eXYPk0iPtOdTX9SoskWxHhEtQf5ymG6W', '', 'user1'),
+(2, 'user2', 'user2@restoweb.com', '$2y$10$hFfugL60x474.JtjSfOIoepjxJ/IPFET.rFQoAoriXIzOa7Fkzo/q', '', 'user2');
 
 --
 -- Index pour les tables déchargées
@@ -238,92 +230,20 @@ ALTER TABLE `commande`
   ADD KEY `idUtilisateur` (`idUtilisateur`);
 
 --
--- Index pour la table `etat`
---
-ALTER TABLE `etat`
-  ADD PRIMARY KEY (`idEtat`);
-
---
--- Index pour la table `ligne_commande`
---
-ALTER TABLE `ligne_commande`
-  ADD PRIMARY KEY (`idCommande`,`idProduit`),
-  ADD KEY `idProduit` (`idProduit`);
-
---
--- Index pour la table `produit`
---
-ALTER TABLE `produit`
-  ADD PRIMARY KEY (`idProduit`),
-  ADD KEY `idType` (`idType`);
-
---
--- Index pour la table `type`
---
-ALTER TABLE `type`
-  ADD PRIMARY KEY (`idType`);
-
---
 -- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`idUtilisateur`),
-  ADD UNIQUE KEY `emailUtilisateur` (`emailUtilisateur`);
+  ADD PRIMARY KEY (`idUtilisateur`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT pour la table `commande`
---
-ALTER TABLE `commande`
-  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
-  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
-
---
--- AUTO_INCREMENT pour la table `etat`
---
-ALTER TABLE `etat`
-  MODIFY `idEtat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-  MODIFY `idEtat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT pour la table `produit`
---
-ALTER TABLE `produit`
-  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
---
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `commande`
---
-ALTER TABLE `commande`
-  ADD CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`idEtat`) REFERENCES `etat` (`idEtat`),
-  ADD CONSTRAINT `commande_ibfk_2` FOREIGN KEY (`idUtilisateur`) REFERENCES `utilisateur` (`idUtilisateur`);
-
---
--- Contraintes pour la table `ligne_commande`
---
-ALTER TABLE `ligne_commande`
-  ADD CONSTRAINT `ligne_commande_ibfk_1` FOREIGN KEY (`idCommande`) REFERENCES `commande` (`idCommande`),
-  ADD CONSTRAINT `ligne_commande_ibfk_2` FOREIGN KEY (`idProduit`) REFERENCES `produit` (`idProduit`);
-
---
--- Contraintes pour la table `produit`
---
-ALTER TABLE `produit`
-  ADD CONSTRAINT `produit_ibfk_1` FOREIGN KEY (`idType`) REFERENCES `type` (`idType`);
+  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

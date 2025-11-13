@@ -64,7 +64,7 @@ if (isset($_POST["login"]) && isset($_POST["prenom"]) && isset($_POST["email"]) 
         ?>
 </head>
 <form method="post" action="" class="auth">
-    <h1>Connexion</h1>
+    <h1>Inscription</h1>
     <?php
     if (isset($messager_mdp)) {
         ?>
