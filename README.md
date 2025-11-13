@@ -86,8 +86,8 @@ Documents
 
 | **Rôle**       | **Identifiant** | **Mot de passe** | **Email**             |
 |----------------|-----------------|------------------|-----------------------|
-| Utilisateur 1  | user1           | user1            | user1@restoweb.com    |
-| Utilisateur 2  | user2           | user2            | user2@restoweb.com    |
+| Utilisateur 1  | user1           | user123456789!            | user1@restoweb.com    |
+| Utilisateur 2  | user2           | user23456789!            | user2@restoweb.com    |
 
 ---
 
