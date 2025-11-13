@@ -19,7 +19,7 @@ if (isset($_POST["login"]) && isset($_POST["prenom"]) && isset($_POST["email"]) 
     $prenom = htmlspecialchars(trim($_POST["prenom"]));
     $email = htmlspecialchars(trim($_POST["email"]));
     $password = htmlspecialchars($_POST["password"]);
-    $repeatpassword = htmlspecialchars(trim($_POST["repeatpassword"]));
+    $repeatpassword = htmlspecialchars($_POST["repeatpassword"]);
 
     $sthcheck = $dbh->prepare($sqlcheck);
     $sthcheck->execute([":email" => $email]);
@@ -93,4 +93,5 @@ if (isset($_POST["login"]) && isset($_POST["prenom"]) && isset($_POST["email"]) 
     <?php
     require_once('./inc/nav.inc.php')
         ?>
+
 </body>
