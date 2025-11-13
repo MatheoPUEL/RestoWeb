@@ -258,6 +258,7 @@ p {
 
       <h2>Votre commande à bien été prise en compte. </h2>
       <p>Votre commande à bien été prise en compte, un mail vous sera transmis afin que vous veniez la
+      <p>Votre commande à bien été prise en compte, un mail vous sera transmis afin que vous veniez la
         récupérer. Merci de votre confiance, Maison Wagyu. </p>
       <button><a href="./index.php"> Accueil </a> </button>
 
@@ -269,3 +270,4 @@ p {
 </body>
 
 </html>
+

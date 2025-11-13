@@ -4,6 +4,7 @@
 --
 -- Hôte : 127.0.0.1
 -- Généré le : jeu. 06 nov. 2025 à 11:55
+-- Généré le : jeu. 06 nov. 2025 à 11:55
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -46,6 +47,14 @@ CREATE TABLE `etat` (
   `idEtat` int(11) NOT NULL,
   `libEtat` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Déchargement des données de la table `etat`
+--
+
+INSERT INTO `etat` (`idEtat`, `libEtat`) VALUES
+(1, 'Commandé '),
+(2, 'Commencé');
 
 --
 -- Déchargement des données de la table `etat`
@@ -213,6 +222,7 @@ CREATE TABLE `utilisateur` (
 
 INSERT INTO `utilisateur` (`idUtilisateur`, `loginUtilisateur`, `emailUtilisateur`, `mdpUtilisateur`, `nomUtil`, `prenomUtil`) VALUES
 (1, 'Matheo', 'test@gmail.com', '$2y$10$IkTVzJoAVJz.jE1QfySGEe6uqmPELs/vkYeEeGxPTecVboSYUk64m', '', 'test'),
+(1, 'Matheo', 'test@gmail.com', '$2y$10$IkTVzJoAVJz.jE1QfySGEe6uqmPELs/vkYeEeGxPTecVboSYUk64m', '', 'test'),
 (2, 'test1@gmail.com', 'test1@gmail.com', '$2y$10$sHdFkjSlWhQhkTDTAAOkPOE7E/rP9iiJgIhT9nklXZjXLJVx5x.Im', '', 'test1');
 
 --
@@ -269,11 +279,13 @@ ALTER TABLE `utilisateur`
 --
 ALTER TABLE `commande`
   MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT pour la table `etat`
 --
 ALTER TABLE `etat`
+  MODIFY `idEtat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
   MODIFY `idEtat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -286,6 +298,7 @@ ALTER TABLE `produit`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
+  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
   MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
