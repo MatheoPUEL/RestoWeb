@@ -138,7 +138,7 @@ try {
 
                     <!-- Wagyu -->
                     <?php if (count($wagyus) > 0): ?>
-                        <button type="button" class="collapsible">Dessert</button>
+                        <button type="button" class="collapsible">Wagyus</button>
                         <div class="collapse-content">
                             <?php foreach ($wagyus as $wagyu): ?>
                                 <div class="card-product">
@@ -180,7 +180,7 @@ try {
 
                     <!-- Bières -->
                     <?php if (count($bieres) > 0): ?>
-                        <button type="button" class="collapsible">Dessert</button>
+                        <button type="button" class="collapsible">Bières</button>
                         <div class="collapse-content">
                             <?php foreach ($bieres as $biere): ?>
                                 <div class="card-product">
@@ -238,6 +238,14 @@ try {
                             }
                             ?>
                         </ul>
+                        <?php
+                        if (!empty($_SESSION['panier'])) {
+                          $total = Panier::calculerPrixTotal($_SESSION['panier']);
+                          echo "<p>Prix total du panier : " . number_format($total, 2, ',', ' ') . " € </p>";
+                      } else {
+                          echo "Votre panier est vide.";
+                      }
+                        ?>
                     <?php
 
                     } else {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 15 oct. 2025 à 21:01
+-- Généré le : jeu. 06 nov. 2025 à 11:55
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -47,6 +47,14 @@ CREATE TABLE `etat` (
   `libEtat` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Déchargement des données de la table `etat`
+--
+
+INSERT INTO `etat` (`idEtat`, `libEtat`) VALUES
+(1, 'Commandé '),
+(2, 'Commencé');
+
 -- --------------------------------------------------------
 
 --
@@ -59,6 +67,57 @@ CREATE TABLE `ligne_commande` (
   `qteCommandee` int(11) DEFAULT NULL,
   `prixHtLigneCommande` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Déclencheurs `ligne_commande`
+--
+DELIMITER $$
+CREATE TRIGGER `after_insert_commande` AFTER INSERT ON `ligne_commande` FOR EACH ROW BEGIN
+    DECLARE v_prixCommande DECIMAL (5,2);
+    DECLARE v_typeCommande VARCHAR(3);
+
+    SELECT typeCommande INTO v_typeCommande FROM commande WHERE idCommande = NEW.idCommande;
+
+    SELECT SUM(prixHtLigneCommande) into v_prixCommande FROM ligne_commande
+    WHERE idCommande = NEW.idCommande;
+
+IF v_typeCommande = "SP" THEN
+    UPDATE commande SET totalCommande = v_prixCommande * 1.055 WHERE idCommande = NEW.idCommande;
+ELSE
+    UPDATE commande SET totalCommande = v_prixCommande * 1.10 WHERE idCommande = NEW.idCommande;
+END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `after_ligne_insert` BEFORE INSERT ON `ligne_commande` FOR EACH ROW BEGIN
+    DECLARE v_prixTTC DECIMAL(16,2);
+    SELECT SUM(prixHtLigneCommande) INTO v_prixTTC FROM `ligne_commande` WHERE idCommande = NEW.idCommande;
+    SET v_prixTTC = v_prixTTC * 1.20;
+    UPDATE commande SET totalCommande = v_prixTTC WHERE idCommande = NEW.idCommande;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `after_ligne_update` AFTER UPDATE ON `ligne_commande` FOR EACH ROW BEGIN
+	DECLARE v_prixTotal DECIMAL(16,2);
+    SELECT totalCommande INTO v_prixTotal FROM commande WHERE idCommande = NEW.idCommande;
+   	SET v_prixTotal = (v_prixTotal - OLD.prixHtLigneCommande) + (NEW.prixHtLigneCommande * 1.20);
+	UPDATE commande SET totalCommande = v_prixTotal WHERE idCommande = NEW.idCommande;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `before_update_ligne_commande` BEFORE UPDATE ON `ligne_commande` FOR EACH ROW BEGIN
+ DECLARE v_prixHt DECIMAL(5,2) ;
+
+ SELECT prixHtProduit into v_prixHt from produit
+ WHERE idProduit = new.idProduit ;
+ set new.prixHtLigneCommande = v_prixHt * new.qteCommandee ;
+
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -153,7 +212,7 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`idUtilisateur`, `loginUtilisateur`, `emailUtilisateur`, `mdpUtilisateur`, `nomUtil`, `prenomUtil`) VALUES
-(1, 'test@gmail.com', 'test@gmail.com', '$2y$10$IkTVzJoAVJz.jE1QfySGEe6uqmPELs/vkYeEeGxPTecVboSYUk64m', '', 'test'),
+(1, 'Matheo', 'test@gmail.com', '$2y$10$IkTVzJoAVJz.jE1QfySGEe6uqmPELs/vkYeEeGxPTecVboSYUk64m', '', 'test'),
 (2, 'test1@gmail.com', 'test1@gmail.com', '$2y$10$sHdFkjSlWhQhkTDTAAOkPOE7E/rP9iiJgIhT9nklXZjXLJVx5x.Im', '', 'test1');
 
 --
@@ -209,13 +268,13 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT pour la table `etat`
 --
 ALTER TABLE `etat`
-  MODIFY `idEtat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idEtat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `produit`
@@ -227,7 +286,7 @@ ALTER TABLE `produit`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées
@@ -257,57 +316,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-/** Trigger de la 3.1 **/
-DELIMITER |
-CREATE TRIGGER before_update_ligne_commande BEFORE UPDATE ON ligne_commande
- FOR EACH ROW BEGIN
- DECLARE v_prixHt DECIMAL(5,2) ;
-
- SELECT prixHtProduit into v_prixHt from produit
- WHERE idProduit = new.idProduit ;
- set new.prixHtLigneCommande = v_prixHt * new.qteCommandee ;
-
-END |
-DELIMITER ;
-
-/** Trigger de la 3.2 **/
-DELIMITER |
-CREATE TRIGGER BEFORE_insert_ligne_commande BEFORE INSERT ON ligne_commande
- FOR EACH ROW BEGIN
-
-DECLARE v_prixHt DECIMAL(5,2) ;
-
-SELECT prixHtProduit into v_prixHt from produit
-WHERE idProduit = new.idProduit;
-
-set new.prixHtLigneCommande = v_prixHt * new.qteCommandee ;
-
-END |
-DELIMITER ;
-
-
-/** Trigger de la 3.4 **/
-DELIMITER |
-CREATE OR REPLACE TRIGGER after_ligne_update AFTER UPDATE
-ON ligne_commande
-FOR EACH ROW
-BEGIN
-	DECLARE v_prixTotal DECIMAL(16,2);
-    SELECT totalCommande INTO v_prixTotal FROM commande WHERE idCommande = NEW.idCommande;
-   	SET v_prixTotal = (v_prixTotal - OLD.prixHtLigneCommande) + (NEW.prixHtLigneCommande * 1.20);
-	UPDATE commande SET totalCommande = v_prixTotal WHERE idCommande = NEW.idCommande;
-END |
-DELIMITER ;
-/** Trigger de la 3.3 **/
-DELIMITER |
-CREATE OR REPLACE TRIGGER after_ligne_insert BEFORE INSERT
-ON ligne_commande
-FOR EACH ROW
-BEGIN
-    DECLARE v_prixTTC DECIMAL(16,2);
-    SELECT SUM(prixHtLigneCommande) INTO v_prixTTC FROM `ligne_commande` WHERE idCommande = NEW.idCommande;
-    SET v_prixTTC = v_prixTTC * 1.20;
-    UPDATE commande SET totalCommande = v_prixTTC WHERE idCommande = NEW.idCommande;
-END |
-DELIMITER ;

@@ -12,9 +12,14 @@ if ( isset($_SESSION['panier']) && isset($_SESSION['emailUtilisateur']) && isset
 
     $total = 0;
     foreach ($_SESSION['panier'] as $produit) {
-        $total += $produit->prix; 
+        $total += $produit->prix;
     }
 
+    if ($_GET['choix'] == 0 ) {
+      $_GET['choix'] = "SP";
+    } else {
+      $_GET['choix'] = "EMP";
+    }
     $stmt->execute([
         ':totalCommande' => $total,
         ':typeCommande' => $_GET['choix'],

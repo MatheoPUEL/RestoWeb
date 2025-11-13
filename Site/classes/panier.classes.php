@@ -7,6 +7,7 @@ class Panier
     public $description;
     public $prix;
     public $quantite;
+    public static $prixTotal;
 
     function __construct($id, $lib, $description, $prix, $quantite)
     {
@@ -15,5 +16,15 @@ class Panier
         $this->description = $description;
         $this->prix = $prix;
         $this->quantite = $quantite;
+    }
+
+    public static function calculerPrixTotal($panier)
+    {
+        $total = 0.0;
+        foreach ($panier as $produit) {
+            $total += $produit->prix * $produit->quantite;
+        }
+        self::$prixTotal = $total;
+        return $total;
     }
 }

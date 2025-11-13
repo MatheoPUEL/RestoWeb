@@ -10,7 +10,7 @@ if (isset($_GET['idpro']) && isset($_SESSION['emailUtilisateur'])) {
     $produit->execute();
     $produit_data = $produit->fetch(PDO::FETCH_ASSOC);
 
-    
+
     if (!isset($_SESSION['panier'])) {
         $_SESSION['panier'] = [];
     }
@@ -19,11 +19,11 @@ if (isset($_GET['idpro']) && isset($_SESSION['emailUtilisateur'])) {
     $found= false;
     foreach ($_SESSION['panier'] as $item) {
         if ($item->id == $produit_data['idProduit']) {
-            $item->quantite += 1;
-            $item->prix += $produit_data['prixHtProduit'];
-            $found = true;
-            header('Location: ../carte.php');
-        }
+          $item->quantite += 1;
+          $found = true;
+          header('Location: ../carte.php');
+          exit;
+      }
     }
     if($found == false) {
         $produit = new Panier($produit_data['idProduit'], $produit_data['libProduit'], $produit_data['descriptionProduit'], $produit_data['prixHtProduit'], $quantite);
@@ -31,5 +31,5 @@ if (isset($_GET['idpro']) && isset($_SESSION['emailUtilisateur'])) {
         header('Location: ../carte.php');
     }
 } else {
-    
+    header('Localtion: ../index.php');
 }
