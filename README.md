@@ -1,26 +1,26 @@
 # RestoAPP
 
-## **Description du projet**  
-RestoAPP est une application web destinée aux clients d’un restaurant. Elle leur permet de consulter le menu et de passer une commande.  
-Une fois la commande prête, le client est notifié et peut venir la récupérer au comptoir.  
+## **Description du projet**
+RestoAPP est une application web destinée aux clients d’un restaurant. Elle leur permet de consulter le menu et de passer une commande.
+Une fois la commande prête, le client est notifié et peut venir la récupérer au comptoir.
 L’application est responsive afin d’être utilisable facilement sur smartphone.
 
-### **Fonctionnalités principales**  
-- Les clients peuvent passer une commande et choisir entre une consommation **sur place** ou **à emporter**.  
-- Le paiement s’effectue en ligne.  
-- Le client reçoit un email lorsque la commande est prête.  
-- Une inscription préalable sur le site est obligatoire.  
+### **Fonctionnalités principales**
+- Les clients peuvent passer une commande et choisir entre une consommation **sur place** ou **à emporter**.
+- Le paiement s’effectue en ligne.
+- Le client reçoit un email lorsque la commande est prête.
+- Une inscription préalable sur le site est obligatoire.
 - Les administrateurs peuvent valider ou refuser les commandes.
 
 Ce projet a été réalisé dans le cadre d’un **projet de classe de 2SIO, option SLAM** (Solutions Logicielles et Applications Métiers).
 
 ---
 
-## **Procédure d'installation**  
+## **Procédure d'installation**
 
 | **Étape**              | **Action à réaliser**                                                                 |
 |------------------------|---------------------------------------------------------------------------------------|
-| **Cloner le dépôt**    | `https://github.com/MatheoPUEL/RestoWeb.git`                                          |
+| **Cloner le dépôt**    | `git clone https://github.com/MatheoPUEL/RestoWeb.git`                                          |
 | **Lancer les serveurs**| Démarrer les services **Apache** et **MySQL**                                         |
 | **Importer la base**   | Importer le fichier `.sql` disponible dans la documentation via l’interface PHPMyAdmin |
 | **Accéder au site**    | Ouvrir [https://localhost/](https://localhost/) dans un navigateur                    |
@@ -82,7 +82,7 @@ Documents
 ```
 ---
 
-## **Comptes de connexion par défaut**  
+## **Comptes de connexion par défaut**
 
 | **Rôle**       | **Identifiant** | **Mot de passe** | **Email**             |
 |----------------|-----------------|------------------|-----------------------|
@@ -91,7 +91,7 @@ Documents
 
 ---
 
-## **Technologies utilisées**  
+## **Technologies utilisées**
 
 | **Technologie / Outil** | **Utilisation**                                                 |
 |------------------------|-----------------------------------------------------------------|
@@ -105,11 +105,11 @@ Documents
 
 ---
 
-## **Informations supplémentaires**  
+## **Informations supplémentaires**
 
-- **Projet réalisé pour l’année 2025-2026**  
-- **Équipe** :  
-  - Truwant Gaëtan  
-  - Puel Mathéo  
-  - Ramia Noa  
-  - Martin Noah  
+- **Projet réalisé pour l’année 2025-2026**
+- **Équipe** :
+  - Truwant Gaëtan
+  - Puel Mathéo
+  - Ramia Noa
+  - Martin Noah

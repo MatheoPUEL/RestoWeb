@@ -14,6 +14,12 @@ body {
     background-color: #ff4757;
     border-radius: 15px;
 }
+.alert-valid {
+  width: 95%;
+  padding: 15px;
+  background-color: #2ecc71;
+  border-radius: 15px;
+}
 .auth {
     position: absolute;
     top: 25%;
@@ -55,7 +61,7 @@ nav  {
     left: 50%;
     top: -15px;
     transform: translateX(-50%);
-    
+
     z-index: 99;
     width: 80%;
     display: flex;
@@ -119,7 +125,7 @@ nav .user-section a:hover {
     text-decoration: none;
     color:#473815;
     font-weight: 900;
-    
+
     transition-duration: 0.5s;
 }
 .secondary-cta {
@@ -151,7 +157,7 @@ nav .user-section a:hover {
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    width: 70%;   
+    width: 70%;
 }
 .content-2 {
     margin-top: 150px;
@@ -171,7 +177,7 @@ nav .user-section a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     text-align: center;
 }
 .card h2 {

@@ -26,8 +26,7 @@ if (isset($_POST["login"]) && isset($_POST["prenom"]) && isset($_POST["email"]) 
     $emailexists = $sthcheck->fetchColumn();
 
     if ($emailexists > 0) {
-        $messager_email = "Cet email est déjà inscrit";
-        echo $messager_email;
+        $messager_mdp = "Cet email est déjà inscrit";
     } else {
         if (strlen($password) >= 8) {
             if ($password == $repeatpassword) {
@@ -36,18 +35,15 @@ if (isset($_POST["login"]) && isset($_POST["prenom"]) && isset($_POST["email"]) 
                     $sthinsert = $dbh->prepare($sqlinsert);
                     $sthinsert->execute(array(":login" => $login, ":prenom" => $prenom, ":email" => $email, ":password" => $password, ));
                     $messagev = "Inscription prise en compte !";
-                    echo $messagev;
+
                 } catch (PDOException) {
                     $messager_mdp = "Erreur lors de l'inscription, veuillez réessayer plus tard : ";
-                    echo $messager_mdp;
                 }
             } else {
                 $messager_mdp = "Les mots de passe ne correspondent pas";
-                echo $messager_mdp;
             }
         } else {
-            $messager_str = "Le mot de passe doit être supérieur à 8 caractères";
-            echo $messager_str;
+            $messager_mdp = "Le mot de passe doit être supérieur à 8 caractères";
         }
     }
 
@@ -75,7 +71,7 @@ if (isset($_POST["login"]) && isset($_POST["prenom"]) && isset($_POST["email"]) 
     }
     if (isset($messagev)) {
         ?>
-        <div class="alert-danger">
+        <div class="alert-valid">
             <?= $messagev ?>
         </div>
         <?php
